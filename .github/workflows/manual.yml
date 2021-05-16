@@ -59,6 +59,13 @@ jobs:
          docker push $IMAGE_NAME:$IMAGE_TAG
          
      #CDeployment - subindo imagem docker na aws
+  deploy-on-aws:
+     needs: [docker-image]
+     
+     runs-on: ubuntu-latest
+     steps:
+
+     - uses: actions/checkout@v2
      - name: NodeJS AWS SAM Deploy
        uses: docker://jhonyra/ezops-docker-image:latest
        env:
