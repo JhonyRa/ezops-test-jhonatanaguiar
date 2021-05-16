@@ -57,3 +57,10 @@ jobs:
        run: |
          docker build -t $IMAGE_NAME:$IMAGE_TAG .
          docker push $IMAGE_NAME:$IMAGE_TAG
+         
+     #CDeployment - subindo imagem docker na aws
+     - name: NodeJS AWS SAM Deploy
+       uses: docker://jhonyra/ezops-docker-image:latest
+       env:
+         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
