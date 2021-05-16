@@ -11,48 +11,13 @@ jobs:
       matrix:
         node-version: [14.x]
         mongodb-version: [4.2]
-
+        
     steps:
-    - uses: actions/checkout@v2
-    - run: git fetch --prune --unshallow
-
-    - name: Use Nodejs ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-        
-    - name: Strat MongoDB
-      uses: supercharge/mongodb-github-action@1.1.0
-      with:
-        mongodb-version: ${{ matrix.mongodb-version }}
-        
-    
-  
-  docker-image:
-   needs: [build]
-   
-   runs-on: ubuntu-latest
-   steps:
-  
-   - uses: actions/checkout@v2
-
-   - name: Download artifact
-     uses: actions/download-artifact@v2
-     with:
-       name: artifact
-       path: app
-
-   - name: Login to DockerHub Registry
-     uses: docker/login-action@v1
-     with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
-     
-   - name: Build and push doker image 
-     env:
-      IMAGE_NAME: jhonyra/ezops-docker-image
-      IMAGE_TAG: latest
-     run: |
-       docker build -t $IMAGE_NAME:$IMAGE_TAG .
-       docker push $IMAGE_NAME:$IMAGE_TAG
-  
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: nodemon ./server.js
