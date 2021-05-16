@@ -21,6 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
+      #pulado teste pois não consegui implementa (comando npm test não parava)
       
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
