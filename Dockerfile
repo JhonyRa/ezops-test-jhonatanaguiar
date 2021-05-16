@@ -2,10 +2,11 @@ FROM alpine:latesd
 
 RUN apk add --no-cache nodejs npm
 
-WORKDIR /app
+WORKDIR /ezops-test-jhonatanaguiar
 
-COPY . /app
+COPY . /ezops-test-jhonatanaguiar
 
-RUN npm install
+RUN npm ci
+RUN npm node ./server.js
 
 EXPOSE 3001
