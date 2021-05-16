@@ -2,6 +2,7 @@ name: ezopstest
 
 on:  [ 'push' ]
 
+# CI - build, teste, e upload de artefato
 jobs:
   build:
 
@@ -26,4 +27,32 @@ jobs:
         with:
           name: ezops-artifact-appnode
           path: /home/runner/work/ezops-test-jhonatanaguiar/
-        
+  
+  # CDelivery - criando imagem docker do artefato criado
+  docker-image:
+     needs: [build]
+
+     runs-on: ubuntu-latest
+     steps:
+
+     - uses: actions/checkout@v2
+
+     - name: Download artifact
+       uses: actions/download-artifact@v2
+       with:
+         name: ezops-artifact-appnode
+         path: ezops-test-jhonatanaguiar
+
+     - name: Login to DockerHub Registry
+       uses: docker/login-action@v1
+       with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+     - name: Build doker image and push
+       env:
+        IMAGE_NAME: jhonyra/ezops-docker-image
+        IMAGE_TAG: latest
+       run: |
+         docker build -t $IMAGE_NAME:$IMAGE_TAG .
+         docker push $IMAGE_NAME:$IMAGE_TAG
