@@ -79,7 +79,7 @@ jobs:
           working-directory: /home/ubuntu/
           command: |
               sudo docker pull jhonyra/ezops-docker-image:latest
-              sudo docker run -p 3001:3001 -d jhonyra/ezops-docker-image:latest
+              sudo docker run -p 3000:3000 -d jhonyra/ezops-docker-image:latest
         
           # Catch SSM outputs
       - name: Get the outputs
