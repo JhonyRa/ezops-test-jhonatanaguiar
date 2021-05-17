@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ezops-artifact-appnode
-          path: /home/runner/work/ezops-test-jhonatanaguiar/
+          path: ./ezops-test-jhonatanaguiar/
   
   # CDelivery - criando imagem docker do artefato criado
   docker-image:
