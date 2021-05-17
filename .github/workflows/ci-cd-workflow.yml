@@ -72,8 +72,11 @@ jobs:
         
         with:
           command: |
+              sudo docker stop ezopsApp
+              sudo docker image rm -f jhonyra/ezops-docker-image
               sudo docker pull jhonyra/ezops-docker-image:latest
-              sudo docker run -p 3000:3000 -d jhonyra/ezops-docker-image:latest
+              sudo docker run --name ezopsApp -p 3000:3000 -d jhonyra/ezops-docker-image:latest
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+
