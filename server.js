@@ -48,6 +48,6 @@ mongoose.connect(dbUrl, {useNewUrlParser: true,  useUnifiedTopology: true}).then
   console.log(err);
 });
 
-var server = http.listen(3000, () => {
+var server = http.listen(3001, () => {
   console.log('server is running on port', server.address().port);
 });
