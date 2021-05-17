@@ -4,8 +4,10 @@ WORKDIR /var/app/ezops-test-jhonatanaguiar/
 # Install app dependencies
 COPY package*.json ./
 USER node
-RUN npm install
-RUN npm ci
+RUN npm install \
+    npm ci \
+    npm mongoose \
+    npm install mongodb
 COPY --chown=node:node . .
 EXPOSE 8080
 CMD [ "node", "server.js" ]
