@@ -67,20 +67,14 @@ jobs:
      steps:
       - uses: actions/checkout@v2
       
-      - name: AWS SSM Send-Command
-        uses: peterkimzz/aws-ssm-send-command@master
-        id: ssm
+      - name: Run SSH command
+        uses: garygrossgarten/github-action-ssh@release
+        
         with:
-          aws-region: ${{ secrets.AWS_REGION }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          instance-ids: i-050a7cc7ebf89fe25
-
-          working-directory: /home/ubuntu/
           command: |
               sudo docker pull jhonyra/ezops-docker-image:latest
               sudo docker run -p 3000:3000 -d jhonyra/ezops-docker-image:latest
-        
-          # Catch SSM outputs
-      - name: Get the outputs
-        run: echo "The Command id is ${{ steps.ssm.outputs.command-id }}"
+              
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          privateKey: ${{ secrets.REMOTE_SSH_KEY }}
