@@ -5,6 +5,7 @@ WORKDIR /var/app/ezops-test-jhonatanaguiar/
 COPY package*.json ./
 USER node
 RUN npm install
+RUN npm ci
 COPY --chown=node:node . .
 EXPOSE 8080
 CMD [ "node", "server.js" ]
