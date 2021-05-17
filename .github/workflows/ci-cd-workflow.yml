@@ -26,10 +26,11 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ezops-artifact-appnode
+          name: ezops-artifact
           path: ezops-test-jhonatanaguiar
   
-  # CDelivery - criando imagem docker do artefato criado
+# CDelivery - criando imagem docker do artefato criado
+  
   docker-image:
      needs: [build]
 
@@ -41,7 +42,7 @@ jobs:
      - name: Download artifact
        uses: actions/download-artifact@v2
        with:
-         name: ezops-artifact-appnode
+         name: ezops-artifact
          path: ezops-test-jhonatanaguiar
 
      - name: Login to DockerHub Registry
