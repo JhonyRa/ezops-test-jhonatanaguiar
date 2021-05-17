@@ -2,9 +2,11 @@ name: ezops-app-3001
 
 on:  
   push:
-    branches: [ 3001/main-server ]
+    branches:  
+      - '*'
   pull_request:
-    branches: [ 3001/main-server ]
+    branches:
+      - '*'
     
 #CDeployment - fetch no repositório e reiniciando aplicação
 jobs:
