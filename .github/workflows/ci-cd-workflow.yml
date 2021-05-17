@@ -1,4 +1,4 @@
-name: ezopstest
+name: ezopsworkflowtest
 
 on:  [ 'push' ]
 
