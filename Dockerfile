@@ -1,15 +1,5 @@
 FROM alpine:latest
 
-RUN apk add --no-cache nodejs npm
+COPY ezops-test-jhonatanaguiar /var/app/ezops-test-jhonatanaguiar
 
-WORKDIR /usr/src/ezops-test-jhonatanaguiar
-
-COPY package*.json ./
-
-RUN npm ci
-
-COPY . .
-
-EXPOSE 8080
-
-CMD [ "node", "server.js" ]
+ENTRYPOINT ["node", "./server.js", "/var/app/ezops-test-jhonatanaguiar/server.js"]
