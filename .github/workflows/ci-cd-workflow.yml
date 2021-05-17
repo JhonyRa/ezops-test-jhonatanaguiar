@@ -81,4 +81,4 @@ jobs:
      
        run: |
         sudo docker pull jhonyra/ezops-docker-image:latest
-        sudo docker run -p 3001:80 -d jhonyra/ezops-docker-image:latest
+        sudo docker run -p 3001:3001 -d jhonyra/ezops-docker-image:latest
