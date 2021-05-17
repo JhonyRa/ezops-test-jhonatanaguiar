@@ -1,6 +1,10 @@
 name: ezopsworkflowtest
 
-on:  [ 'push' ]
+on:  
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 # CI - build, teste, e upload de artefato
 jobs:
