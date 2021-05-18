@@ -14,7 +14,7 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
-var dbUrl = 'mongodb+srv://atlasAdmin:Abacaxi123@ezops-shard-00-00.aovgr.mongodb.net:27017,ezops-shard-00-01.aovgr.mongodb.net:27017,ezops-shard-00-02.aovgr.mongodb.net:27017/ezops-database?ssl=true&replicaSet=ezops-shard-0'
+var dbUrl = 'mongodb+srv://ezops-shard-00-01.aovgr.mongodb.net'
 
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
