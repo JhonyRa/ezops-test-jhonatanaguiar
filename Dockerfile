@@ -1,13 +1,11 @@
-FROM node:10-alpine
-RUN mkdir -p /var/app/ezops-test-jhonatanaguiar/node_modules && chown -R node:node /var/app/ezops-test-jhonatanaguiar/
-WORKDIR /var/app/ezops-test-jhonatanaguiar/
+FROM node:14.17.0
+ENV NODE_ENV=production
+
+WORKDIR /ezops-test-jhonatanaguiar
 # Install app dependencies
-COPY package*.json ./
+COPY ["package.json", "package-lock.json*", "./"]
 USER node
-RUN npm install \
-    npm ci \
-    npm mongoose \
-    npm install mongodb
-COPY --chown=node:node . .
-EXPOSE 8080
+RUN npm install --production
+COPY . .
+
 CMD [ "node", "server.js" ]
