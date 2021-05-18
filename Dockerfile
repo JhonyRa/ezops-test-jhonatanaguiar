@@ -1,10 +1,10 @@
 FROM node:14.17.0
-
-WORKDIR /ezops-test-jhonatanaguiar
+RUN mkdir -p /var/app/ezops-test-jhonatanaguiar/node_modules && chown -R node:node /var/app/ezops-test-jhonatanaguiar/
+WORKDIR /var/app/ezops-test-jhonatanaguiar/
 # Install app dependencies
 COPY ["package.json", "package-lock.json*", "./"]
 USER node
 RUN npm install
-COPY . .
+COPY --chown=node:node . .
 
 CMD [ "node", "server.js" ]
