@@ -14,7 +14,8 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
-var dbUrl = 'mongodb+srv://ezops-shard-00-00.aovgr.mongodb.net/ezops-database'
+var dbUrl = 'mongodb+srv://atlasAdmin:Abacaxi123@ezops-shard-00-00.aovgr.mongodb.net:27017,ezops-shard-00-01.aovgr.mongodb.net:27017,ezops-shard-00-02.aovgr.mongodb.net:27017/ezops-database?ssl=true&replicaSet=ezops-shard-0'
+
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
     res.send(messages);
@@ -48,6 +49,6 @@ mongoose.connect(dbUrl, {useNewUrlParser: true,  useUnifiedTopology: true}).then
   console.log(err);
 });
 
-var server = http.listen(3000, () => {
+var server = http.listen(3001, () => {
   console.log('server is running on port', server.address().port);
 });
