@@ -40,13 +40,13 @@
             <p>  ${message.message} </p>`)
         }
         function getMessages(){
-            $.get('http://app51-node.ezops.com.br:3000/messages', (data) => {
+            $.get('https://app51-node.ezops.com.br:3000/messages', (data) => {
             data.forEach(addMessages);
             })
         }
         
         function sendMessage(message){
-            $.post('http://app51-node.ezops.com.br:3000/messages', message)
+            $.post('https://app51-node.ezops.com.br:3000/messages', message)
         }
     </script>
 </body>
