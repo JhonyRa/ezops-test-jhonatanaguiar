@@ -15,4 +15,12 @@
     "mongoose": "^5.12.9",
     "socket.io": "^4.1.1"
   }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JhonyRa/ezops-test-jhonatanaguiar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JhonyRa/ezops-test-jhonatanaguiar/issues"
+  },
+  "homepage": "https://github.com/JhonyRa/ezops-test-jhonatanaguiar#readme"
 }
